@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:provider/provider.dart';
+import 'package:get/get.dart';
+import 'package:flutter/foundation.dart';
+
+import 'screens/second.dart';
 
 // class MyApp extends StatelessWidget {
 //   @override
@@ -183,13 +187,20 @@ class _RandomWordsState extends State<RandomWords> {
 }
 
 class MyApp extends StatelessWidget {
+  void _pushSaved(Set<WordPair> data) {
+    debugPrint('data _saved: $data');
+    Get.to(SecondScreen(), arguments: data);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
         title: 'First App',
         home: Scaffold(
           appBar: AppBar(
-            leading: IconButton(icon: Icon(Icons.menu_open), onPressed: null),
+            leading: IconButton(
+                icon: Icon(Icons.menu_open),
+                onPressed: () => _pushSaved(context.read<ListWords>()._saved)),
             title: Text('List'),
             actions: [
               IconButton(icon: Icon(Icons.menu_open), onPressed: null),
