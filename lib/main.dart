@@ -189,20 +189,11 @@ class MyApp extends StatelessWidget {
         title: 'First App',
         home: Scaffold(
           appBar: AppBar(
-            title: Row(
-              children: <Widget>[
-                IconButton(icon: Icon(Icons.menu_open), onPressed: null),
-                Expanded(
-                    child: Container(
-                        color: Colors.blue,
-                        child: Text(
-                          'List',
-                          style: TextStyle(color: Colors.white),
-                          textAlign: TextAlign.center,
-                        ))),
-                IconButton(icon: Icon(Icons.menu_open), onPressed: null)
-              ],
-            ),
+            leading: IconButton(icon: Icon(Icons.menu_open), onPressed: null),
+            title: Text('List'),
+            actions: [
+              IconButton(icon: Icon(Icons.menu_open), onPressed: null),
+            ],
           ),
           body: RandomWords(),
         ));
@@ -220,7 +211,6 @@ class ListWords with ChangeNotifier {
 
   void addAllListSuggestion(Iterable<WordPair> list) {
     _suggestions.addAll(list);
-    notifyListeners();
   }
 
   void addSaved(WordPair text) {
